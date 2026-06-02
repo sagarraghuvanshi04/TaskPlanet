@@ -12,8 +12,6 @@ import {
 
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import MoodOutlinedIcon from '@mui/icons-material/MoodOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -21,8 +19,6 @@ import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
 
 export default function CreatePost({ onPostCreated }) {
-  const { user } = useAuth();
-
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState('');
