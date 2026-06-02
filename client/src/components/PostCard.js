@@ -152,7 +152,7 @@ export default function PostCard({ post: initialPost }) {
         {post.image && (
           <Box sx={{ borderRadius: '12px', overflow: 'hidden', mt: 1 }}>
             <img
-              src={`${process.env.REACT_APP_API_URL?.replace('/api', '') || 'http://localhost:5000'}${post.image}`}
+              src={post.image}
               alt="post"
               style={{ width: '100%', maxHeight: 400, objectFit: 'cover', display: 'block' }}
             />
