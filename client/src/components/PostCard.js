@@ -28,13 +28,30 @@ export default function PostCard({ post: initialPost }) {
   const [submitting, setSubmitting] = useState(false);
 
   const isLiked = post.likes.includes(user?.id);
+  const [liking, setLiking] = useState(false);
 
   const handleLike = async () => {
+    if (liking) return; // prevent double click
+    setLiking(true);
+    // Optimistic update — instant UI response
+    const wasLiked = post.likes.includes(user?.id);
+    setPost(prev => ({
+      ...prev,
+      likes: wasLiked
+        ? prev.likes.filter(id => id !== user?.id)
+        : [...prev.likes, user?.id],
+      likedUsernames: wasLiked
+        ? prev.likedUsernames.filter(u => u !== user?.username)
+        : [...prev.likedUsernames, user?.username],
+    }));
     try {
       const { data } = await api.put(`/posts/${post._id}/like`);
-      setPost(data);
+      setPost(data); // sync with server truth
     } catch (err) {
+      setPost(prev => ({ ...prev })); // revert on error
       console.error(err);
+    } finally {
+      setLiking(false);
     }
   };
 

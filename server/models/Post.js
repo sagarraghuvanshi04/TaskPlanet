@@ -17,4 +17,7 @@ const postSchema = new mongoose.Schema({
   comments: [commentSchema],
 }, { timestamps: true });
 
+// Index for fast feed pagination (newest first)
+postSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model('Post', postSchema);
