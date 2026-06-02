@@ -16,7 +16,6 @@ import SendIcon from '@mui/icons-material/Send';
 import CloseIcon from '@mui/icons-material/Close';
 
 import api from '../api/axios';
-import { useAuth } from '../context/AuthContext';
 
 export default function CreatePost({ onPostCreated }) {
   const [content, setContent] = useState('');
